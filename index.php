@@ -31,7 +31,7 @@
 				top: 360px;
 				left: 540px;
 			}
-			#quotes {
+			.quotes {
 				width: 404px;
 				height: 404px;
 				position: absolute;
@@ -270,18 +270,59 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script src="js/date.js"></script>
 		
+		<script src="js/quotes.js"></script>
 		<script src="js/poll.js"></script>
 		<script src="js/quiz.js"></script>
 		<script src="js/enter.js"></script>
+		
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+  			_gaq.push(['_setAccount', 'UA-26400721-1']);
+  			_gaq.push(['_trackPageview']);
+
+  			(function() {
+    			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  		})();
+		</script>
 
 	</head>
 
 	<body>
+	
+		<!--INTIALIZE FB SDK-->
+		<div id="fb-root"></div>
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '409828155747904', //app id
+		      channelURL : 'https://fbdev.me/channel.php', //channel file
+		      status     : true, //check login status
+		      cookie     : true, //enable cookies to allow the server to access the session
+		      oauth      : true, //enable OAuth 2.0
+		      xfbml      : true  //parse XFBML
+		    });
+		
+		    //set canvas size
+			FB.Canvas.setAutoGrow();
+			
+		  };
+		
+		  //load SDK asynchronously
+		  (function(d){
+		     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+		     js = d.createElement('script'); js.id = id; js.async = true;
+		     js.src = "//connect.facebook.net/en_US/all.js";
+		     d.getElementsByTagName('head')[0].appendChild(js);
+		   }(document));
+		</script>
+
 
 		<div id="app_wrapper">
 			
 			<div id="quote_count">1 of 10</div>
-			<div id="quotes"></div>
+			<div id="quote_container"></div>
 			<div class="btn" id="prev_quote"></div>
 			<div class="btn" id="next_quote"></div>
 			
@@ -357,6 +398,10 @@
 				<div class="btn" id="signup"></div>
 			</div>
 			
+		</div>
+		
+		<div id="terms-bottom" style="position: relative; width: 500px; padding-top: 10px; margin: 0 auto; clear: both; font-family: Arial; color: #333; font-size: 11px; text-align: center;">
+			This promotion is in no way sponsored, endorsed or administered by, or associated with Facebook. You are providing your information to Tyson Foods and not to Facebook.
 		</div>
 
 	</body>
